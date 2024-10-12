@@ -1,16 +1,10 @@
-FROM ubuntu:latest
+FROM python:3.10
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y \
-  python3.10 \
-  python3-pip \
-  git
+# Install git
+RUN apt-get update && apt-get install -y git
 
-# Check Python and Pip versions
-RUN python3 --version && pip3 --version
-
-# Install PyYAML
-RUN pip3 install PyYAML
+# Install PyYAML (not necessary since we are using a Python image, but included for clarity)
+RUN pip install PyYAML
 
 # Copy the feed.py script into the container
 COPY feed.py /usr/bin/feed.py
